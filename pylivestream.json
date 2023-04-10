@@ -1,7 +1,7 @@
 {
   "screencap_origin": [0,0],
   "screencap_size": [1920, 1080],
-  "screencap_fps": 30,
+  "screencap_fps": 60,
   "camera_size": [1920, 1080],
   "camera_fps": 30,
   "audio_rate": 44100,

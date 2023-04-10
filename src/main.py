@@ -1,4 +1,3 @@
-
 import magic
 from os import listdir
 from os.path import isfile, join
@@ -14,6 +13,7 @@ images = []
 
 music = "../music/Shiro_Sagisu_Attack_of_Titans.mp3"
 
+#Type files
 for file in files:
     type = magic.from_file(join(path, file), mime=True)
     if type == "image/jpeg" or type == "image/png":
@@ -29,6 +29,7 @@ for file in files:
 print(images)
 print(videos)
 
+#run stream
 while True:
     for image in images:
         stream.streamImage(music, image)
