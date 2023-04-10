@@ -1,25 +1,3 @@
-# import os
-# from selenium import webdriver
-
-#
-# sites = ["youtube"]
-#
-# # pls.stream_files(ini_file="pylivestream.json", websites=sites, loop=True, video_path="./files", glob="*",
-# #                  assume_yes=True)
-# # stream = base.Livestream(site="youtube", inifn="pylivestream.json", image="./files/vk.png", loop=True, vidsource="file", audio_chan="null")
-# # next(stream.startlive(sinks=["youtube"]))
-#
-
-# # options = webdriver.FirefoxOptions()
-# # options.add_argument('--headless')
-# # driver = webdriver.Remote(
-# #     command_executor='http://192.168.0.3:4444',
-# #     options=options
-# # )
-# # driver.set_window_size(1920, 1165)
-# # driver.get("https://habr.ru/")
-# # driver.save_screenshot('vk.png')
-# # driver.quit()
 
 import magic
 from os import listdir
