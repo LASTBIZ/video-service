@@ -1,3 +1,4 @@
+import grpc
 import magic
 from os import listdir
 from os.path import isfile, join
@@ -29,10 +30,14 @@ for file in files:
 print(images)
 print(videos)
 
+
+
+
 #run stream
 while True:
     for image in images:
         stream.streamImage(music, image)
     for video in videos:
         stream.streamVideo(video)
+
 
