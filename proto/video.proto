@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package api.video;
+
+import "google/protobuf/empty.proto";
+option go_package = "project-service/./api/video;video";
+option java_multiple_files = true;
+option java_package = "..api.video";
+
+service Video {
+	rpc CreateVideo (CreateVideoRequest) returns (google.protobuf.Empty);
+	rpc CreateScreenShoot(CreateScreenShotRequest) returns (google.protobuf.Empty);
+	rpc UpdateScreenShoot(UpdateScreenShotRequest) returns (google.protobuf.Empty);
+	rpc DeleteScreenShoot(DeleteScreenShotRequest) returns (google.protobuf.Empty);
+	rpc UpdateVideo (UpdateVideoRequest) returns (google.protobuf.Empty);
+	rpc DeleteVideo (DeleteVideoRequest) returns (google.protobuf.Empty);
+}
+
+message CreateVideoRequest {
+	string path = 1;
+}
+
+message UpdateVideoRequest {
+	string old_path = 1;
+	string new_path = 2;
+}
+
+message DeleteVideoRequest {
+	string path = 1;
+}
+
+message CreateScreenShotRequest {
+	string path = 1;
+	string site_path = 2;
+}
+
+message UpdateScreenShotRequest {
+	string old_path = 1;
+	string new_path = 2;
+}
+
+message DeleteScreenShotRequest {
+	string path = 1;
+}
