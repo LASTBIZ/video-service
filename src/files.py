@@ -30,19 +30,21 @@ class FileStream():
                         if track.width == 1920 and track.height == 1080:
                             self.videos.append(join(path, file))
 
-    def AddVideo(self, video: str):
+    def AddVideo(self, videos,  video: str):
         self.storage.download_video(video)
-        self.videos.append(join(self.path, video))
+        videos.append(join(self.path, video))
+        print(self.videos)
 
-    def DeleteVideo(self, video: str):
+    def DeleteVideo(self, videos, video: str):
         remove(join(self.path, video))
-        self.videos.remove(join(self.path, video))
+        videos.remove(join(self.path, video))
+        print(videos)
 
-    def AddScreenshot(self, name, site):
+    def AddScreenshot(self, images, name, site):
         screenshot.screenshot(join(self.path, name), site)
-        self.images.append(join(self.path, name+".png"))
+        images.append(join(self.path, name+".png"))
         print(self.images)
 
-    def RemoveScreenshot(self, name):
-        remove(join(self.path, name))
-        self.images.remove(join(self.path, name))
+    def RemoveScreenshot(self, images, name):
+        remove(join(self.path, name+".png"))
+        images.remove(join(self.path, name+".png"))

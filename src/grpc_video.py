@@ -1,4 +1,6 @@
 import asyncio
+from concurrent import futures
+
 import grpc
 
 import proto.video_pb2_grpc
@@ -7,40 +9,44 @@ from google.protobuf.empty_pb2 import Empty
 
 
 class VideoServiceServicer(proto.video_pb2_grpc.VideoServicer):
+    def __init__(self, videos, images):
+        print("")
+        self.videos = videos
+        self.images = images
+        # print(file.videos)
 
-    async def CreateVideo(self, request, context):
-        app.filestream.AddVideo(request.path)
+    def CreateVideo(self, request, context):
+        app.filestream.AddVideo(self.videos, request.path)
         return Empty()
 
-    async def CreateScreenShoot(self, request, context):
-        app.filestream.AddScreenshot(request.path, request.site_path)
+    def CreateScreenShoot(self, request, context):
+        app.filestream.AddScreenshot(self.images, request.path, request.site_path)
         return Empty()
 
-    async def UpdateScreenShoot(self, request, context):
+    def UpdateScreenShoot(self, request, context):
         print(request)
         return Empty()
 
-    async def DeleteScreenShoot(self, request, context):
-        app.filestream.RemoveScreenshot(request.path)
+    def DeleteScreenShoot(self, request, context):
+        app.filestream.RemoveScreenshot(self.images, request.path)
         return Empty()
 
-    async def UpdateVideo(self, request, context):
+    def UpdateVideo(self, request, context):
         print(request)
         return Empty()
 
-    async def DeleteVideo(self, request, context):
-        app.filestream.DeleteVideo(request.path)
+    def DeleteVideo(self, request, context):
+        app.filestream.DeleteVideo(self.videos, request.path)
         return Empty()
 
 
-async def serve():
+def serve(videos, images):
     print("asdasd")
-    server = grpc.aio.server()
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     proto.video_pb2_grpc.add_VideoServicer_to_server(
-        VideoServiceServicer(), server)
+        VideoServiceServicer(videos, images), server)
     server.add_insecure_port("[::]:50051")
-    await server.start()
-
-    return server
+    server.start()
+    server.wait_for_termination()
     # await server.wait_for_termination()
 
